@@ -126,7 +126,7 @@ const HomePage: React.FC = () => {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-blue-100 mb-10">
-            Join thousands of venues and users already using Wajad to reunite people with their belongings.
+            Join us on Wajad to reunite people with their belongings!.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

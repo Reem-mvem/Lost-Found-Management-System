@@ -35,8 +35,7 @@ const UserClaim: React.FC = () => {
   };
 
   const extractItemDataFromConversation = (history: ChatMessage[]) => {
-    // Simple extraction based on conversation context
-    // In a real implementation, you might use more sophisticated NLP
+  
     const conversationText = history.filter(m => m.role === 'user').map(m => m.content).join(' ');
     
     return {
@@ -125,7 +124,7 @@ const UserClaim: React.FC = () => {
     const trackingNumber = 'LF' + Date.now().toString().slice(-6);
     const claim = {
       id: Date.now().toString(),
-      itemId: '', // Will be matched by AI in real implementation
+      itemId: '', 
       userDescription: `${data.type} - ${data.color} - ${data.brand} - Lost at: ${data.location} - Details: ${data.description}`,
       contactInfo: `${data.contactName} - ${data.contactEmail} - ${data.contactPhone}`,
       timestamp: new Date().toISOString(),
@@ -133,7 +132,7 @@ const UserClaim: React.FC = () => {
       trackingNumber
     };
 
-    // Save to localStorage (in production, this would be an API call)
+    // Save to localStorage
     const existingClaims = JSON.parse(localStorage.getItem('claims') || '[]');
     existingClaims.push(claim);
     localStorage.setItem('claims', JSON.stringify(existingClaims));

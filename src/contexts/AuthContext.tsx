@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    // Mock authentication - in production, this would call your API
+    // Mock authentication
     const venues = JSON.parse(localStorage.getItem('venues') || '[]');
     const foundVenue = venues.find((v: any) => v.email === email && v.password === password);
     

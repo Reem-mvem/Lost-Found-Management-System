@@ -10,7 +10,7 @@ export class OpenAIService {
   private systemPrompt: string;
 
   constructor() {
-    // Get API key from environment variables (Groq or OpenAI)
+  
     this.apiKey = import.meta.env.VITE_GROQ_API_KEY || import.meta.env.VITE_OPENAI_API_KEY || '';
     
     // System prompt for the Lost & Found chatbot
@@ -40,25 +40,25 @@ Your job is to help users report lost items by collecting the following informat
   }
 
   async sendMessage(messages: ChatMessage[]): Promise<string> {
-    console.log('🔍 API Key check:', this.apiKey ? 'Found API key' : 'No API key');
+    console.log('API Key check:', this.apiKey ? 'Found API key' : 'No API key');
     
     if (!this.apiKey) {
-      console.log('⚠️ Using demo responses - no API key found');
+      console.log('Using demo responses');
       return this.getDemoResponse(messages);
     }
 
     try {
-      // Determine if using Groq or OpenAI based on API key prefix
+  
       const isGroq = this.apiKey.startsWith('gsk_');
       const apiUrl = isGroq 
         ? 'https://api.groq.com/openai/v1/chat/completions'
         : 'https://api.openai.com/v1/chat/completions';
       
       const model = isGroq 
-        ? 'llama3-8b-8192'  // Groq's fast Llama model
-        : 'gpt-3.5-turbo';   // OpenAI's model
+        ? 'llama3-8b-8192'  
+        : 'gpt-3.5-turbo'; 
 
-      console.log(`🤖 Using ${isGroq ? 'Groq' : 'OpenAI'} API with model: ${model}`);
+      console.log(`Using ${isGroq ? 'Groq' : 'OpenAI'} API with model: ${model}`);
 
       const response = await fetch(apiUrl, {
         method: 'POST',
